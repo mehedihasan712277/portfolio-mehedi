@@ -95,8 +95,10 @@ const Navbar = () => {
 
     return (
         <div className="py-6 sticky top-0 bg-background">
-            <nav className="px-4 flex justify-between items-center max-w-7xl mx-auto">
-                <div className="font-semibold text-lg">Mehedi</div>
+            <nav className="flex justify-between items-center px-4 md:px-6 max-w-6xl mxl:px-4 mxl:max-w-7xl mx-auto">
+                <div className="font-semibold text-lg">
+                    {"< "}Mehedi{" />"}
+                </div>
 
                 {/* desktop menu */}
                 <div className="hidden md:flex items-center gap-6">

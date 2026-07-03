@@ -9,7 +9,7 @@ import Service from "./_components/service/Service";
 
 const HomePage = () => {
     return (
-        <div>
+        <div className="px-4 md:px-6 max-w-6xl mxl:px-4 mxl:max-w-7xl mx-auto">
             <HeroSection></HeroSection>
             <About></About>
             <Skill></Skill>
