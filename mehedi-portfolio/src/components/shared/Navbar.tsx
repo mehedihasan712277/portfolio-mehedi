@@ -24,11 +24,11 @@ import {
 const menu = [
     { label: "Home", url: "/#home" },
     { label: "About", url: "/#about" },
-    { label: "Services", url: "/#services" },
     { label: "Skills", url: "/#skills" },
     { label: "Experience", url: "/#experience" },
-    { label: "Education", url: "/#education" },
     { label: "Projects", url: "/#projects" },
+    { label: "Services", url: "/#services" },
+    { label: "Education", url: "/#education" },
     { label: "Contact", url: "/#contact" },
 ];
 
@@ -94,7 +94,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="py-6">
+        <div className="py-6 sticky top-0 bg-background">
             <nav className="px-4 flex justify-between items-center max-w-7xl mx-auto">
                 <div className="font-semibold text-lg">Mehedi</div>
 
