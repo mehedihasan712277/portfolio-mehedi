@@ -28,6 +28,10 @@ import hpanelIcon from "@/assets/hpanel.png";
 import webuzoIcon from "@/assets/webuzo.png";
 import vpsIcon from "@/assets/vps.png";
 import linuxIcon from "@/assets/linux.png";
+import jwt from "@/assets/jwt.png";
+import nextauth from "@/assets/next-auth.png";
+import betterauth from "@/assets/better-auth.png";
+
 import Image, { StaticImageData } from "next/image";
 import {
     Code2,
@@ -40,6 +44,7 @@ import {
     Smartphone,
     Gauge,
     ShieldCheck,
+    KeyRound,
     type LucideIcon,
 } from "lucide-react";
 
@@ -61,12 +66,35 @@ interface SkillCategory {
         bg: string;
         text: string;
     };
+    // Explicit grid placement classes applied only on lg+ screens so the
+    // layout on smaller breakpoints (1 / 2 columns) is unaffected.
+    gridClass?: string;
 }
 
 // TODO: replace with data fetched from the API
 const skillCategories: SkillCategory[] = [
     {
-        title: "Programming Language",
+        title: "Frontend",
+        icon: LayoutPanelLeft,
+        color: {
+            border: "border-cyan-500/40",
+            bg: "bg-cyan-500/10",
+            text: "text-cyan-500",
+        },
+        // Row 1: occupy column 1 & 2
+        gridClass: "lg:col-span-2",
+        skills: [
+            { name: "HTML", icon: htmlIcon },
+            { name: "CSS", icon: cssIcon },
+            { name: "Next.js", icon: nextjsIcon },
+            { name: "React.js", icon: reactIcon },
+            { name: "Tailwind CSS", icon: tailwindIcon },
+            { name: "shadcn/ui", icon: shadcnIcon },
+            { name: "MUI", icon: muiIcon },
+        ],
+    },
+    {
+        title: "Language",
         icon: Code2,
         color: {
             border: "border-blue-500/40",
@@ -81,21 +109,23 @@ const skillCategories: SkillCategory[] = [
         ],
     },
     {
-        title: "Frontend",
-        icon: LayoutPanelLeft,
+        title: "Deployment",
+        icon: Rocket,
         color: {
-            border: "border-cyan-500/40",
-            bg: "bg-cyan-500/10",
-            text: "text-cyan-500",
+            border: "border-orange-500/40",
+            bg: "bg-orange-500/10",
+            text: "text-orange-500",
         },
         skills: [
-            { name: "HTML", icon: htmlIcon },
-            { name: "CSS", icon: cssIcon },
-            { name: "Next.js", icon: nextjsIcon },
-            { name: "React.js", icon: reactIcon },
-            { name: "Tailwind CSS", icon: tailwindIcon },
-            { name: "shadcn/ui", icon: shadcnIcon },
-            { name: "MUI", icon: muiIcon },
+            { name: "VPS", icon: vpsIcon },
+            { name: "hPanel", icon: hpanelIcon },
+            { name: "cPanel", icon: cpanelIcon },
+            // { name: "Webuzo", icon: webuzoIcon },
+            { name: "Vercel", icon: vercelIcon },
+            // { name: "Netlify", icon: netlifyIcon },
+            { name: "Git", icon: gitIcon },
+            // { name: "GitHub", icon: githubIcon },
+            { name: "Linux", icon: linuxIcon },
         ],
     },
     {
@@ -106,6 +136,8 @@ const skillCategories: SkillCategory[] = [
             bg: "bg-emerald-500/10",
             text: "text-emerald-500",
         },
+        // Row 2: occupy column 2 & 3
+        gridClass: "lg:col-start-2 lg:col-span-2",
         skills: [
             { name: "Node.js", icon: nodejsIcon },
             { name: "Express.js", icon: expressIcon },
@@ -113,6 +145,20 @@ const skillCategories: SkillCategory[] = [
             { name: "Mongoose", icon: mongooseIcon },
             { name: "PostgreSQL", icon: postgresqlIcon },
             { name: "Prisma", icon: prismaIcon },
+        ],
+    },
+    {
+        title: "Authentication",
+        icon: KeyRound,
+        color: {
+            border: "border-amber-500/40",
+            bg: "bg-amber-500/10",
+            text: "text-amber-500",
+        },
+        skills: [
+            { name: "JWT", icon: jwt },
+            { name: "Better Auth", icon: betterauth },
+            { name: "NextAuth", icon: nextauth },
             { name: "Firebase", icon: firebaseIcon },
         ],
     },
@@ -128,26 +174,6 @@ const skillCategories: SkillCategory[] = [
             { name: "Figma", icon: figmaIcon },
             { name: "Canva", icon: canvaIcon },
             { name: "Adobe Photoshop", icon: photoshopIcon },
-        ],
-    },
-    {
-        title: "Deployment & Version Control",
-        icon: Rocket,
-        color: {
-            border: "border-orange-500/40",
-            bg: "bg-orange-500/10",
-            text: "text-orange-500",
-        },
-        skills: [
-            { name: "VPS", icon: vpsIcon },
-            { name: "hPanel", icon: hpanelIcon },
-            { name: "cPanel", icon: cpanelIcon },
-            { name: "Webuzo", icon: webuzoIcon },
-            { name: "Vercel", icon: vercelIcon },
-            { name: "Netlify", icon: netlifyIcon },
-            { name: "Git", icon: gitIcon },
-            { name: "GitHub", icon: githubIcon },
-            { name: "Linux", icon: linuxIcon },
         ],
     },
     {
@@ -190,7 +216,9 @@ const Skill = () => {
                 {skillCategories.map((category) => (
                     <div
                         key={category.title}
-                        className="group rounded-3xl border border-border/60 bg-card/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-card/70 hover:shadow-xl hover:shadow-black/20 sm:p-8"
+                        className={`group flex h-full flex-col justify-between rounded-3xl border border-border/60 bg-card/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-card/70 hover:shadow-xl hover:shadow-black/20 sm:p-8 ${
+                            category.gridClass ?? ""
+                        }`}
                     >
                         <div className="mb-6 flex items-center gap-4">
                             <div
@@ -200,7 +228,7 @@ const Skill = () => {
                                     className={`size-5 ${category.color.text}`}
                                 />
                             </div>
-                            <p className="text-xl font-semibold text-foreground">
+                            <p className="text-xl lg:text-2xl font-semibold text-foreground">
                                 {category.title}
                             </p>
                         </div>

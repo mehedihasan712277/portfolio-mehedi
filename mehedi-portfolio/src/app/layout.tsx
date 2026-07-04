@@ -32,7 +32,7 @@ export default function RootLayout({
             <body className="min-h-full w-full">
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="system"
+                    defaultTheme="dark"
                     enableSystem
                     disableTransitionOnChange
                 >

@@ -74,11 +74,11 @@ const Contact = () => {
                             rel={external ? "noopener noreferrer" : undefined}
                             className="group relative flex items-center justify-between gap-4 rounded-3xl border border-border/60 bg-card/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-card/70 hover:shadow-xl hover:shadow-black/20"
                         >
-                            <div className="flex items-center gap-4">
+                            <div className="flex min-w-0 items-center gap-4">
                                 <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors duration-300 group-hover:border-accent group-hover:text-foreground">
                                     <Icon className="size-5" />
                                 </span>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col min-w-0">
                                     <span className="text-[11px] font-medium tracking-widest text-muted-foreground uppercase">
                                         {title}
                                     </span>
