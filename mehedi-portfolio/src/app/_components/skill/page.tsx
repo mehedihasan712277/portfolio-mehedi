@@ -54,6 +54,13 @@ interface SkillCategory {
     title: string;
     icon: LucideIcon;
     skills: SkillItem[];
+    // Tailwind classes are kept as full literal strings below (not built
+    // dynamically via template strings) so the JIT compiler can detect them.
+    color: {
+        border: string;
+        bg: string;
+        text: string;
+    };
 }
 
 // TODO: replace with data fetched from the API
@@ -61,6 +68,11 @@ const skillCategories: SkillCategory[] = [
     {
         title: "Programming Language",
         icon: Code2,
+        color: {
+            border: "border-blue-500/40",
+            bg: "bg-blue-500/10",
+            text: "text-blue-500",
+        },
         skills: [
             { name: "JavaScript", icon: jsIcon },
             { name: "TypeScript", icon: tsIcon },
@@ -71,6 +83,11 @@ const skillCategories: SkillCategory[] = [
     {
         title: "Frontend",
         icon: LayoutPanelLeft,
+        color: {
+            border: "border-cyan-500/40",
+            bg: "bg-cyan-500/10",
+            text: "text-cyan-500",
+        },
         skills: [
             { name: "HTML", icon: htmlIcon },
             { name: "CSS", icon: cssIcon },
@@ -84,6 +101,11 @@ const skillCategories: SkillCategory[] = [
     {
         title: "Backend & Database",
         icon: Server,
+        color: {
+            border: "border-emerald-500/40",
+            bg: "bg-emerald-500/10",
+            text: "text-emerald-500",
+        },
         skills: [
             { name: "Node.js", icon: nodejsIcon },
             { name: "Express.js", icon: expressIcon },
@@ -97,6 +119,11 @@ const skillCategories: SkillCategory[] = [
     {
         title: "Design Tools",
         icon: Palette,
+        color: {
+            border: "border-pink-500/40",
+            bg: "bg-pink-500/10",
+            text: "text-pink-500",
+        },
         skills: [
             { name: "Figma", icon: figmaIcon },
             { name: "Canva", icon: canvaIcon },
@@ -106,6 +133,11 @@ const skillCategories: SkillCategory[] = [
     {
         title: "Deployment & Version Control",
         icon: Rocket,
+        color: {
+            border: "border-orange-500/40",
+            bg: "bg-orange-500/10",
+            text: "text-orange-500",
+        },
         skills: [
             { name: "VPS", icon: vpsIcon },
             { name: "hPanel", icon: hpanelIcon },
@@ -121,6 +153,11 @@ const skillCategories: SkillCategory[] = [
     {
         title: "Others",
         icon: Sparkles,
+        color: {
+            border: "border-violet-500/40",
+            bg: "bg-violet-500/10",
+            text: "text-violet-500",
+        },
         skills: [
             { name: "Best Practices", icon: BadgeCheck },
             { name: "Responsive Design", icon: Smartphone },
@@ -156,8 +193,12 @@ const Skill = () => {
                         className="group rounded-3xl border border-border/60 bg-card/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-card/70 hover:shadow-xl hover:shadow-black/20 sm:p-8"
                     >
                         <div className="mb-6 flex items-center gap-4">
-                            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-border/60 bg-accent/10 transition-colors group-hover:border-accent">
-                                <category.icon className="size-5 text-foreground" />
+                            <div
+                                className={`flex size-12 shrink-0 items-center justify-center rounded-xl border transition-colors ${category.color.border} ${category.color.bg}`}
+                            >
+                                <category.icon
+                                    className={`size-5 ${category.color.text}`}
+                                />
                             </div>
                             <p className="text-xl font-semibold text-foreground">
                                 {category.title}
