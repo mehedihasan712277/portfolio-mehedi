@@ -1,30 +1,31 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Download } from "lucide-react";
-import facebook from "@/assets/facebook.png";
-import whatsapp from "@/assets/whatsapp2.png";
-import linkedin from "@/assets/linkedin.png";
-import github from "@/assets/github-icon.png";
+// import facebook from "@/assets/facebook.png";
+// import whatsapp from "@/assets/whatsapp2.png";
+// import linkedin from "@/assets/linkedin.png";
+// import github from "@/assets/github-icon.png";
 import { Button } from "@/components/ui/button";
+import { LuFacebook, LuLinkedin, LuGithub } from "react-icons/lu";
 
 const socials = [
     {
         href: "https://www.facebook.com/share/1CRxz811X9",
-        icon: facebook,
+        icon: <LuFacebook />,
         label: "Facebook",
     },
-    {
-        href: "https://wa.me/8801405748197",
-        icon: whatsapp,
-        label: "WhatsApp",
-    },
+    // {
+    //     href: "https://wa.me/8801405748197",
+    //     icon: whatsapp,
+    //     label: "WhatsApp",
+    // },
     {
         href: "https://www.linkedin.com/in/mdmehedihasan-web-developer",
-        icon: linkedin,
+        icon: <LuLinkedin></LuLinkedin>,
         label: "LinkedIn",
     },
     {
         href: "https://github.com/mehedihasan712277",
-        icon: github,
+        icon: <LuGithub></LuGithub>,
         label: "GitHub",
     },
 ];
@@ -74,7 +75,8 @@ const HeroSection = () => {
                             aria-label={label}
                             className="inline-flex items-center justify-center rounded-full border border-input bg-background p-2.5 transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
-                            <Image src={icon} alt="" className="h-5 w-5" />
+                            {/* <Image src={icon} alt="" className="h-5 w-5" /> */}
+                            <span className="text-xl">{icon}</span>
                         </a>
                     ))}
                 </div>
