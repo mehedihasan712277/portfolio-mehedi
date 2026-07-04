@@ -47,7 +47,8 @@
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
 
-    --breakpoint-xs: 20rem; /* 320px */
+    --breakpoint-xs: 356px; /* 352px */
+    --breakpoint-xsm: 29rem; /* 464px */
     --breakpoint-sm: 40rem; /* 640px  - overrides default */
     --breakpoint-md: 48rem; /* 768px  - overrides default */
     --breakpoint-lg: 64rem; /* 1024px - overrides default */

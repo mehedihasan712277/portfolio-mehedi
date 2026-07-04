@@ -49,7 +49,7 @@ const HeroSection = () => {
             />
 
             <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-4 text-center">
-                <span className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-4 py-1.5 text-sm text-muted-foreground">
+                <span className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-4 py-1.5 text-xs xsm:text-sm text-muted-foreground">
                     <span className="relative flex h-2 w-2">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
@@ -57,11 +57,11 @@ const HeroSection = () => {
                     Available for freelance &amp; full-time roles
                 </span>
 
-                <h1 className="text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl">
+                <h1 className="text-3xl xs:text-4xl xsm:text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl">
                     Md. Mehedi Hasan
                 </h1>
 
-                <h2 className="text-xl font-medium text-muted-foreground sm:text-2xl lg:text-3xl">
+                <h2 className="xs:text-xl font-medium text-muted-foreground sm:text-2xl lg:text-3xl">
                     Full-Stack Developer crafting clean, reliable products
                 </h2>
 
