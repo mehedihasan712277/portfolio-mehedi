@@ -1,5 +1,22 @@
 import Image, { StaticImageData } from "next/image";
-import { Briefcase } from "lucide-react";
+import { Briefcase, MapPin, Clock, Globe } from "lucide-react";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+
+interface ExperienceDetails {
+    section1Title: string;
+    companyWebsite?: string;
+    companyLocation: string;
+    section1Content: string;
+    section2Title: string;
+    section2Content: string[];
+}
 
 interface Experience {
     _id: string;
@@ -9,15 +26,38 @@ interface Experience {
     role: string;
     companyLink?: string;
     logo: StaticImageData;
+    location: string;
+    jobType: string;
+    details: ExperienceDetails;
 }
 
 interface ExperienceCardProps {
     info: Experience;
 }
 
+// color maps — extend these if you add more variants later
+const locationColorMap: Record<string, string> = {
+    Remote: "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
+    "On site": "border-orange-500/30 bg-orange-500/10 text-orange-400",
+    Hybrid: "border-sky-500/30 bg-sky-500/10 text-sky-400",
+};
+
+const jobTypeColorMap: Record<string, string> = {
+    "Full-time": "border-violet-500/30 bg-violet-500/10 text-violet-400",
+    "Part-time": "border-amber-500/30 bg-amber-500/10 text-amber-400",
+    Contract: "border-rose-500/30 bg-rose-500/10 text-rose-400",
+};
+
+// fallback for anything not in the map
+const defaultBadgeColor =
+    "border-border/60 bg-background/60 text-muted-foreground";
+
 const ExperienceCard = ({ info }: ExperienceCardProps) => {
+    const locationColor = locationColorMap[info.location] ?? defaultBadgeColor;
+    const jobTypeColor = jobTypeColorMap[info.jobType] ?? defaultBadgeColor;
+
     return (
-        <div className="group relative flex flex-col justify-between gap-6 rounded-3xl  bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-card/70 hover:shadow-xl hover:shadow-black/20 sm:p-8">
+        <div className="group relative flex flex-col justify-between border border-border/60 bg-card/40 gap-6 rounded-3xl   p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-card/70 hover:shadow-xl hover:shadow-black/20 sm:p-8">
             {/* content */}
             <div className="relative flex flex-col gap-3">
                 {/* time badge */}
@@ -68,10 +108,110 @@ const ExperienceCard = ({ info }: ExperienceCardProps) => {
             </div>
 
             {/* bottom row */}
-            <div className="relative flex items-center gap-3 border-t border-border/60 pt-4 transition-colors duration-300 group-hover:border-accent">
-                <span className="text-[11px] font-medium tracking-widest text-muted-foreground uppercase transition-colors duration-300 group-hover:text-foreground">
-                    Experience
-                </span>
+            <div className="relative flex justify-between items-center gap-3 border-t border-border/60 pt-4 transition-colors duration-300 group-hover:border-accent">
+                <Dialog>
+                    <DialogTrigger
+                        render={
+                            <button
+                                type="button"
+                                className="cursor-pointer text-[11px] font-medium tracking-widest text-muted-foreground uppercase transition-colors duration-300 hover:text-accent group-hover:text-foreground"
+                            >
+                                Details
+                            </button>
+                        }
+                    />
+                    <DialogContent className="md:max-w-3xl">
+                        <DialogHeader>
+                            <DialogTitle className="flex items-center gap-2.5">
+                                <Image
+                                    src={info.logo}
+                                    alt={`${info.company} logo`}
+                                    width={28}
+                                    height={28}
+                                    className="size-7 shrink-0 rounded-md object-contain"
+                                />
+                                {info.role} - {info.company}
+                            </DialogTitle>
+                            <DialogDescription>{info.time}</DialogDescription>
+                        </DialogHeader>
+                        <div className="-mx-4 no-scrollbar max-h-[60vh] overflow-y-auto px-4">
+                            {/* section 1 */}
+                            <div className="mb-5">
+                                <h4 className="mb-1.5 text-sm font-semibold tracking-wide text-foreground">
+                                    {info.details.section1Title}
+                                </h4>
+                                <p className="mb-2 leading-relaxed text-muted-foreground">
+                                    {info.details.section1Content}
+                                </p>
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+                                    {info.details.companyWebsite && (
+                                        <a
+                                            href={info.details.companyWebsite}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1.5 hover:text-foreground"
+                                        >
+                                            <Globe className="size-3.5" />
+                                            {info.details.companyWebsite.replace(
+                                                /^https?:\/\//,
+                                                "",
+                                            )}
+                                        </a>
+                                    )}
+                                    <span className="inline-flex items-center gap-1.5">
+                                        <MapPin className="size-3.5" />
+                                        {info.details.companyLocation}
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* section 2 */}
+                            <div className="mb-4">
+                                <h4 className="mb-1.5 text-sm font-semibold tracking-wide text-foreground">
+                                    {info.details.section2Title}
+                                </h4>
+                                <ul className="list-disc space-y-1.5 pl-5 leading-relaxed text-muted-foreground">
+                                    {info.details.section2Content.map(
+                                        (item, idx) => (
+                                            <li key={idx}>{item}</li>
+                                        ),
+                                    )}
+                                </ul>
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-1.5">
+                                <span
+                                    className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${locationColor}`}
+                                >
+                                    <MapPin className="size-3.5" />
+                                    {info.location}
+                                </span>
+                                <span
+                                    className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${jobTypeColor}`}
+                                >
+                                    <Clock className="size-3.5" />
+                                    {info.jobType}
+                                </span>
+                            </div>
+                        </div>
+                    </DialogContent>
+                </Dialog>
+
+                {/* location + job type */}
+                <div className="flex flex-wrap items-center gap-1">
+                    <span
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${locationColor}`}
+                    >
+                        <MapPin className="size-3.5" />
+                        {info.location}
+                    </span>
+                    <span
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${jobTypeColor}`}
+                    >
+                        <Clock className="size-3.5" />
+                        {info.jobType}
+                    </span>
+                </div>
             </div>
         </div>
     );
