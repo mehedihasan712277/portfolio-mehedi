@@ -27,9 +27,9 @@ const menu = [
     { label: "Skills", url: "/#skills" },
     { label: "Experience", url: "/#experience" },
     { label: "Projects", url: "/#projects" },
-    { label: "Services", url: "/#services" },
+    // { label: "Services", url: "/#services" },
     { label: "Education", url: "/#education" },
-    // { label: "Contact", url: "/#contact" },
+    { label: "Contact", url: "/#contact" },
 ];
 
 const Navbar = () => {
@@ -78,11 +78,11 @@ const Navbar = () => {
                             "text-sm font-medium transition-colors",
                             mobile
                                 ? "block rounded-md px-3 py-2"
-                                : "hover:text-primary",
+                                : "hover:border-border px-4 py-1 rounded-full border border-transparent",
                             isActive
                                 ? mobile
                                     ? "bg-primary/10 text-primary"
-                                    : "text-primary"
+                                    : "text-primary bg-secondary"
                                 : "text-muted-foreground hover:text-primary",
                         )}
                     >
@@ -101,7 +101,7 @@ const Navbar = () => {
                 </div>
 
                 {/* desktop menu */}
-                <div className="hidden md:flex items-center gap-6">
+                <div className="hidden lg:flex items-center gap-1">
                     <NavLinks />
                 </div>
 
@@ -128,7 +128,7 @@ const Navbar = () => {
                     </DropdownMenu>
 
                     {/* mobile drawer */}
-                    <div className="md:hidden">
+                    <div className="lg:hidden">
                         <Drawer
                             open={open}
                             onOpenChange={setOpen}

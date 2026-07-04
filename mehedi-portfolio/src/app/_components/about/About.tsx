@@ -5,7 +5,7 @@ import Image from "next/image";
 // TODO: replace with API response later — shape kept API-ready on purpose
 const aboutData = {
     image: mehedi,
-    role: "Full-Stack Developer crafting clean, reliable products",
+    role: "Full-Stack Developer",
     description:
         "I'm Mehedi Hasan, a full-stack developer focused on clean architecture, thoughtful UI, and shipping products end-to-end.",
     highlights: [

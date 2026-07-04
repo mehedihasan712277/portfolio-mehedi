@@ -61,7 +61,7 @@ const HeroSection = () => {
                 </h1>
 
                 <h2 className="text-xl font-medium text-muted-foreground sm:text-2xl lg:text-3xl">
-                    Full Stack Web Developer
+                    Full-Stack Developer crafting clean, reliable products
                 </h2>
 
                 <div className="mt-2 flex items-center gap-4">
