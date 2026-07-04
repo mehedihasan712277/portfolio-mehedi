@@ -1,7 +1,7 @@
 import About from "./_components/about/About";
 import HeroSection from "./_components/hero/page";
 import Education from "./_components/education/Education";
-import Contact from "./_components/contact/Contact";
+// import Contact from "./_components/contact/Contact";
 import Experience from "./_components/experience/Experience";
 import Skill from "./_components/skill/page";
 import Project from "./_components/project/Project";
@@ -17,7 +17,7 @@ const HomePage = () => {
             <Project></Project>
             <Service></Service>
             <Education></Education>
-            <Contact></Contact>
+            {/* <Contact></Contact> */}
         </div>
     );
 };

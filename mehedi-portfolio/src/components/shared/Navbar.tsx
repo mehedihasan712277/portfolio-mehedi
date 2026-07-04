@@ -29,7 +29,7 @@ const menu = [
     { label: "Projects", url: "/#projects" },
     { label: "Services", url: "/#services" },
     { label: "Education", url: "/#education" },
-    { label: "Contact", url: "/#contact" },
+    // { label: "Contact", url: "/#contact" },
 ];
 
 const Navbar = () => {
