@@ -30,7 +30,7 @@ const About = () => {
                     <span className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
                         Get to know
                     </span>
-                    <p className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-6xl">
+                    <p className="mt-3 text-3xl font-bold tracking-wider text-foreground md:text-6xl">
                         About Me
                     </p>
                 </div>
