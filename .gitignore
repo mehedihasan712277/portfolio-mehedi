@@ -3,7 +3,7 @@
 
 # Next.js build output
 **/.next/
-
+**/.vercel/
 # Environment files
 **/.env
 **/.env.*
