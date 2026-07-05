@@ -1,10 +1,13 @@
-import Image, { StaticImageData } from "next/image";
-import { CheckCircle2, Layers, ExternalLink } from "lucide-react";
 import nextjsIcon from "@/assets/nextjs.png";
 import tsIcon from "@/assets/typescript.png";
 import expressIcon from "@/assets/expressjs.png";
 import mongodbIcon from "@/assets/mongodb.png";
 import mongooseIcon from "@/assets/mongoose.png";
+import citySolutionImg from "@/assets/website.png";
+import tution from "@/assets/tutionhouse.webp";
+import quran from "@/assets/quran-project.png";
+
+import ProblemsSolvedSection from "./ProblemsSolvedSection";
 
 const projects = [
     {
@@ -12,7 +15,15 @@ const projects = [
         client: "City Solution Bd",
         liveLink: "https://citysolution.com.bd/",
         subtitle:
-            "A complete rebuild focused on performance, SEO, and an easy-to-manage content system.",
+            "A complete rebuild of the website from the ground up, focused on delivering improved performance, improved SEO, and a modern user experience. The project included developing a fully customized admin panel that enables administrators to manage website content and other dynamic data efficiently without requiring technical knowledge.",
+        image: citySolutionImg,
+        bgImage: citySolutionImg,
+
+        meta: {
+            company: "City Solution Bd",
+            type: "solo" as const,
+            role: "Full Stack Developer",
+        },
 
         clientRequirements: [
             "Build a fast, smooth, and SEO-friendly website to replace the previous slow and glitchy version.",
@@ -82,22 +93,128 @@ const projects = [
                 "Business Email Configuration",
             ],
         },
+
+        // github: {
+        //     frontend: "https://github.com/your-username/city-solution-frontend",
+        //     backend: "https://github.com/your-username/city-solution-backend",
+        //     admin: "https://github.com/your-username/city-solution-admin",
+        // },
+    },
+    {
+        // personal project - no client, no client requirements
+        title: "Tuition House: A Tution Media Platform in Bangladesh",
+        // no client field - this is a personal/self-initiated project
+        liveLink: "https://tuitionhouse.org/",
+        subtitle:
+            "It's an online tutoring and tuition marketplace that connects students with tutors for a variety of academic needs. The platform simplifies finding the right tutor by matching students with qualified educators based on their learning needs.",
+        image: tution, // dummy image, replace with actual project screenshot
+        bgImage: citySolutionImg, // dummy background image
+
+        meta: {
+            // no company field - personal project
+            company: "Tuition House",
+            type: "team" as const,
+            role: "Front End Developer",
+        },
+
+        // no clientRequirements - personal project
+
+        problemsSolved: [
+            {
+                title: "Resolved UI and API Issues",
+                description: [
+                    "Fixed multiple frontend UI bugs to improve usability and consistency across the platform.",
+                    "Resolved API-related issues, ensuring stable data fetching, form submissions, and smoother user interactions.",
+                ],
+            },
+            {
+                title: "Implemented New Features",
+                description: [
+                    "Developed a real-time chatbox for seamless communication between users.",
+                    "Added a teacher details management table in the admin panel, implemented sorting functionality, and fixed debouncing issues to improve search performance.",
+                ],
+            },
+            {
+                title: "Enhanced Teacher Profile Management",
+                description: [
+                    "Built and improved the teacher profile section with a cleaner, more informative layout.",
+                    "Fixed various bugs related to profile management, data updates, and overall user experience.",
+                ],
+            },
+        ],
+
+        techStack: {
+            frontend: [
+                { name: "Next.js", icon: nextjsIcon },
+                { name: "TypeScript", icon: tsIcon },
+            ],
+        },
+
+        // github: {
+        //     frontend: "https://github.com/your-username/quran-app-frontend",
+        //     backend: "https://github.com/your-username/quran-app-backend",
+
+        // },
+    },
+    {
+        // personal project - no client, no client requirements
+        title: "Quran App",
+        // no client field - this is a personal/self-initiated project
+        liveLink: "https://quran-app-demo.vercel.app/",
+        subtitle:
+            "The Quran web app is fast and easy to use, providing a smooth reading experience with SSG. It includes powerful surah and translation search, along with a settings panel where users can change the font style and font size to read more comfortably. The website is fully responsive, so it works perfectly on desktops, tablets, and mobile devices.",
+        image: quran, // dummy image, replace with actual project screenshot
+        bgImage: citySolutionImg, // dummy background image
+
+        meta: {
+            // no company field - personal project
+            company: "Demo",
+            type: "solo" as const,
+            role: "Full Stack Developer",
+        },
+
+        // no clientRequirements - personal project
+
+        problemsSolved: [
+            {
+                title: "📖 Built a Clean Reading Experience",
+                description: [
+                    "Designed a simple, distraction-free reading layout for surahs and ayahs.",
+                    "Added adjustable font sizes and Arabic script rendering for readability.",
+                ],
+            },
+            {
+                title: "🌍 Added Multi-language Translations",
+                description: [
+                    "Integrated multiple translation sources for different languages.",
+                    "Allowed users to toggle translations on and off per ayah.",
+                ],
+            },
+        ],
+
+        techStack: {
+            frontend: [
+                { name: "Next.js", icon: nextjsIcon },
+                { name: "TypeScript", icon: tsIcon },
+            ],
+            backend: [
+                { name: "Express.js", icon: expressIcon },
+                { name: "TypeScript", icon: tsIcon },
+            ],
+            database: [
+                { name: "MongoDB", icon: mongodbIcon },
+                { name: "Mongoose ODM", icon: mongooseIcon },
+            ],
+            deployment: ["Vercel"],
+        },
+
+        github: {
+            frontend: "https://github.com/mehedihasan712277/quran_app",
+            backend: "https://github.com/mehedihasan712277/quran_server",
+            // no admin repo for this project
+        },
     },
 ];
-
-const iconCategories: {
-    key: "frontend" | "backend" | "database";
-    label: string;
-}[] = [
-    { key: "frontend", label: "Frontend" },
-    { key: "backend", label: "Backend" },
-    { key: "database", label: "Database" },
-];
-
-interface TechIcon {
-    name: string;
-    icon: StaticImageData;
-}
 
 const Project = () => {
     return (
@@ -119,148 +236,7 @@ const Project = () => {
                 </p>
             </div>
 
-            {/* ---------------previous problem solved section---------------- */}
-            <div className="space-y-20">
-                {projects.map((project) => (
-                    <div key={project.title} className="space-y-10">
-                        {/* project header */}
-                        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                            <div>
-                                <h2 className="mb-2 text-3xl font-bold tracking-tight text-foreground">
-                                    {project.title}
-                                </h2>
-                                <p className="mb-2 text-sm font-medium tracking-wide text-muted-foreground">
-                                    Client:{" "}
-                                    <span className="text-foreground">
-                                        {project.client}
-                                    </span>
-                                </p>
-                                <p className="max-w-2xl text-lg text-muted-foreground">
-                                    {project.subtitle}
-                                </p>
-                            </div>
-
-                            {project.liveLink && (
-                                <a
-                                    href={project.liveLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group/link inline-flex shrink-0 items-center gap-2 rounded-full border border-border/60 bg-card/40 px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:border-accent hover:bg-card/70"
-                                >
-                                    Visit Live Site
-                                    <ExternalLink className="size-4 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                                </a>
-                            )}
-                        </div>
-
-                        {/* client requirements */}
-                        <div className="rounded-3xl border border-border/60 bg-card/40 p-6 sm:p-8">
-                            <h3 className="mb-5 text-sm font-semibold tracking-widest text-muted-foreground uppercase">
-                                Client Requirements
-                            </h3>
-                            <ul className="grid gap-3 sm:grid-cols-2">
-                                {project.clientRequirements.map((req) => (
-                                    <li
-                                        key={req}
-                                        className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground/90"
-                                    >
-                                        <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-                                        <span>{req}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* problems solved */}
-                        <div>
-                            <h3 className="mb-5 text-sm font-semibold tracking-widest text-muted-foreground uppercase">
-                                What I Solved
-                            </h3>
-                            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                                {project.problemsSolved.map((problem) => (
-                                    <div
-                                        key={problem.title}
-                                        className="group rounded-3xl border border-border/60 bg-card/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-card/70 hover:shadow-xl hover:shadow-black/20 sm:p-7"
-                                    >
-                                        <h4 className="mb-3 text-lg font-semibold text-foreground">
-                                            {problem.title}
-                                        </h4>
-                                        <ul className="space-y-2">
-                                            {problem.description.map((item) => (
-                                                <li
-                                                    key={item}
-                                                    className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
-                                                >
-                                                    <span className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground" />
-                                                    <span>{item}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* tech stack */}
-                        <div className="rounded-3xl border border-border/60 bg-card/40 p-6 sm:p-8">
-                            <h3 className="mb-5 flex items-center gap-2 text-sm font-semibold tracking-widest text-muted-foreground uppercase">
-                                <Layers className="size-4" />
-                                Tech Stack
-                            </h3>
-                            <div className="space-y-4">
-                                {iconCategories.map(({ key, label }) => (
-                                    <div
-                                        key={key}
-                                        className="flex flex-col gap-2.5 sm:flex-row sm:items-center"
-                                    >
-                                        <span className="w-36 shrink-0 text-xs font-medium tracking-wider text-muted-foreground uppercase">
-                                            {label}
-                                        </span>
-                                        <div className="flex flex-wrap gap-2">
-                                            {(
-                                                project.techStack[
-                                                    key
-                                                ] as TechIcon[]
-                                            ).map((tech) => (
-                                                <span
-                                                    key={tech.name}
-                                                    className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs font-medium text-foreground/90"
-                                                >
-                                                    <Image
-                                                        src={tech.icon}
-                                                        alt={tech.name}
-                                                        className="size-4 shrink-0 object-contain"
-                                                    />
-                                                    {tech.name}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-
-                                {/* deployment - no icons */}
-                                <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
-                                    <span className="w-36 shrink-0 text-xs font-medium tracking-wider text-muted-foreground uppercase">
-                                        Deployment & Infra
-                                    </span>
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.techStack.deployment.map(
-                                            (item) => (
-                                                <span
-                                                    key={item}
-                                                    className="rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs font-medium text-foreground/90"
-                                                >
-                                                    {item}
-                                                </span>
-                                            ),
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <ProblemsSolvedSection projects={projects} />
         </div>
     );
 };
