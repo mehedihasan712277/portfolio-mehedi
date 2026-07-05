@@ -37,15 +37,15 @@ interface ExperienceCardProps {
 
 // color maps — extend these if you add more variants later
 const locationColorMap: Record<string, string> = {
-    Remote: "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
-    "On site": "border-orange-500/30 bg-orange-500/10 text-orange-400",
-    Hybrid: "border-sky-500/30 bg-sky-500/10 text-sky-400",
+    Remote: " text-emerald-400",
+    "On site": " text-orange-400",
+    Hybrid: " text-sky-400",
 };
 
 const jobTypeColorMap: Record<string, string> = {
-    "Full-time": "border-violet-500/30 bg-violet-500/10 text-violet-400",
-    "Part-time": "border-amber-500/30 bg-amber-500/10 text-amber-400",
-    Contract: "border-rose-500/30 bg-rose-500/10 text-rose-400",
+    "Full-time": "text-violet-400",
+    "Part-time": "text-amber-400",
+    Contract: "text-rose-400",
 };
 
 // fallback for anything not in the map
@@ -114,7 +114,7 @@ const ExperienceCard = ({ info }: ExperienceCardProps) => {
                         render={
                             <button
                                 type="button"
-                                className="cursor-pointer text-[11px] font-medium tracking-widest text-muted-foreground uppercase transition-colors duration-300 hover:text-accent group-hover:text-foreground"
+                                className="bg-card px-4 py-1.5 rounded-full cursor-pointer text-[10px] border border-border tracking-widest text-muted-foreground uppercase transition-colors duration-300 hover:text-accent group-hover:text-foreground"
                             >
                                 Details
                             </button>
@@ -198,15 +198,15 @@ const ExperienceCard = ({ info }: ExperienceCardProps) => {
                 </Dialog>
 
                 {/* location + job type */}
-                <div className="flex flex-wrap items-center gap-1">
+                <div className="flex flex-wrap items-center gap-2 xl:gap-3">
                     <span
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${locationColor}`}
+                        className={`inline-flex items-center gap-1 text-sm  ${locationColor}`}
                     >
                         <MapPin className="size-3.5" />
                         {info.location}
                     </span>
                     <span
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${jobTypeColor}`}
+                        className={`inline-flex items-center gap-1 text-sm  ${jobTypeColor}`}
                     >
                         <Clock className="size-3.5" />
                         {info.jobType}

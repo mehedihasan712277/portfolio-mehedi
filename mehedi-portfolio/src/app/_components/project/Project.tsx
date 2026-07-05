@@ -164,7 +164,7 @@ const projects = [
         // personal project - no client, no client requirements
         title: "Quran App",
         // no client field - this is a personal/self-initiated project
-        liveLink: "https://quran-app-demo.vercel.app/",
+        liveLink: "https://quran-app-flax-three.vercel.app",
         subtitle:
             "The Quran web app is fast and easy to use, providing a smooth reading experience with SSG. It includes powerful surah and translation search, along with a settings panel where users can change the font style and font size to read more comfortably. The website is fully responsive, so it works perfectly on desktops, tablets, and mobile devices.",
         image: quran, // dummy image, replace with actual project screenshot
