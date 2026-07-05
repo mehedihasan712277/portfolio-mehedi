@@ -198,7 +198,7 @@ const ProblemsSolvedSection = ({ projects }: ProblemsSolvedSectionProps) => {
                                             project.clientRequirements.length >
                                                 0 && (
                                                 <div>
-                                                    <h3 className="mb-4 text-sm font-semibold tracking-widest text-muted-foreground uppercase">
+                                                    <h3 className="mb-4 text-sm font-semibold tracking-widest text-green-600 uppercase">
                                                         Client Requirements
                                                     </h3>
                                                     <ul className="grid gap-3 sm:grid-cols-2">
@@ -224,7 +224,7 @@ const ProblemsSolvedSection = ({ projects }: ProblemsSolvedSectionProps) => {
                                             project.problemsSolved.length >
                                                 0 && (
                                                 <div>
-                                                    <h3 className="mb-4 text-sm font-semibold tracking-widest text-muted-foreground uppercase">
+                                                    <h3 className="mb-4 text-sm font-semibold tracking-widest text-green-600 uppercase">
                                                         What I Solved
                                                     </h3>
                                                     <Accordion>
