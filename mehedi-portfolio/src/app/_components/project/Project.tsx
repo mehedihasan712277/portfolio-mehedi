@@ -25,6 +25,8 @@ const projects = [
             role: "Full Stack Developer",
         },
 
+        projectType: "Client's Project",
+
         clientRequirements: [
             "Build a fast, smooth, and SEO-friendly website to replace the previous slow and glitchy version.",
             "Reduce page loading time and improve overall website performance.",
@@ -117,6 +119,8 @@ const projects = [
             role: "Front End Developer",
         },
 
+        projectType: "Company's Project",
+
         // no clientRequirements - personal project
 
         problemsSolved: [
@@ -172,6 +176,8 @@ const projects = [
             type: "solo" as const,
             role: "Full Stack Developer",
         },
+
+        projectType: "Dummy Project",
 
         // no clientRequirements - personal project
 

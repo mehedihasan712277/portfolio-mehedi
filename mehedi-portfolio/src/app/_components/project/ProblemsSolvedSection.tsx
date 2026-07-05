@@ -54,6 +54,7 @@ interface ProjectData {
     image: StaticImageData;
     bgImage?: StaticImageData;
     meta: ProjectMeta;
+    projectType: string;
     clientRequirements?: string[];
     problemsSolved?: ProblemSolved[];
     techStack: TechStack;
@@ -69,6 +70,21 @@ const iconCategories: {
     { key: "database", label: "Database" },
 ];
 
+// maps a projectType string to a badge color scheme.
+// falls back to a neutral scheme for any type not explicitly listed.
+const getProjectTypeBadgeClasses = (projectType: string) => {
+    switch (projectType) {
+        case "Client's Project":
+            return "bg-blue-500/15 text-blue-600 border-blue-500/30 dark:text-blue-400";
+        case "Company's Project":
+            return "bg-purple-500/15 text-purple-600 border-purple-500/30 dark:text-purple-400";
+        case "Dummy Project":
+            return "bg-amber-500/15 text-amber-600 border-amber-500/30 dark:text-amber-400";
+        default:
+            return "bg-muted text-muted-foreground border-border";
+    }
+};
+
 interface ProblemsSolvedSectionProps {
     projects: ProjectData[];
 }
@@ -83,6 +99,15 @@ const ProblemsSolvedSection = ({ projects }: ProblemsSolvedSectionProps) => {
                 >
                     {/* left: content */}
                     <div className="flex flex-1 flex-col gap-5">
+                        {/* project type badge */}
+                        <span
+                            className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-semibold ${getProjectTypeBadgeClasses(
+                                project.projectType,
+                            )}`}
+                        >
+                            {project.projectType}
+                        </span>
+
                         <h2 className="text-3xl tracking-wide text-foreground md:text-4xl">
                             {project.title}
                         </h2>
