@@ -134,7 +134,7 @@ const ExperienceCard = ({ info }: ExperienceCardProps) => {
                             </DialogTitle>
                             <DialogDescription>{info.time}</DialogDescription>
                         </DialogHeader>
-                        <div className="-mx-4 no-scrollbar max-h-[60vh] overflow-y-auto px-4">
+                        <div className="-mx-4 max-h-[65vh] overflow-y-auto px-4">
                             {/* section 1 */}
                             <div className="mb-5">
                                 <h4 className="mb-1.5 text-sm font-semibold tracking-wide text-foreground">
