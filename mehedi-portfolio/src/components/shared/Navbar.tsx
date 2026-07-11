@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Menu as MenuIcon, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -27,7 +27,6 @@ const menu = [
     { label: "Skills", url: "/#skills" },
     { label: "Experience", url: "/#experience" },
     { label: "Projects", url: "/#projects" },
-    // { label: "Services", url: "/#services" },
     { label: "Education", url: "/#education" },
     { label: "Contact", url: "/#contact" },
 ];
@@ -37,7 +36,15 @@ const Navbar = () => {
     const [active, setActive] = useState("home");
     const [open, setOpen] = useState(false);
 
-    // scroll-spy: highlight the menu item for the section in view
+    // when true, the IntersectionObserver should not fight
+    // the scroll/URL state we're setting manually from a click
+    const isClickScrolling = useRef(false);
+    const clickScrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(
+        null,
+    );
+
+    // scroll-spy: highlight the menu item for the section in view,
+    // AND keep the URL hash in sync with it
     useEffect(() => {
         const sections = menu
             .map((item) => document.getElementById(item.url.replace("/#", "")))
@@ -45,9 +52,16 @@ const Navbar = () => {
 
         const observer = new IntersectionObserver(
             (entries) => {
+                if (isClickScrolling.current) return; // ignore while we're click-scrolling
+
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         setActive(entry.target.id);
+                        // keep url hash synced with whatever is actually on screen
+                        const newHash = `#${entry.target.id}`;
+                        if (window.location.hash !== newHash) {
+                            window.history.replaceState(null, "", newHash);
+                        }
                     }
                 });
             },
@@ -57,6 +71,35 @@ const Navbar = () => {
         sections.forEach((section) => observer.observe(section));
         return () => observer.disconnect();
     }, []);
+
+    const handleNavClick = (
+        e: React.MouseEvent<HTMLAnchorElement>,
+        url: string,
+        onNavigate?: () => void,
+    ) => {
+        e.preventDefault();
+        const id = url.replace("/#", "");
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        // pause the observer's control over active/url during the scroll
+        isClickScrolling.current = true;
+        if (clickScrollTimeout.current)
+            clearTimeout(clickScrollTimeout.current);
+
+        setActive(id);
+        // pushState (not replace) so this counts as an intentional nav step
+        window.history.pushState(null, "", `#${id}`);
+
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // resume observer control once the smooth scroll has settled
+        clickScrollTimeout.current = setTimeout(() => {
+            isClickScrolling.current = false;
+        }, 700); // tune to roughly match your smooth-scroll duration
+
+        onNavigate?.();
+    };
 
     const NavLinks = ({
         onNavigate,
@@ -73,7 +116,7 @@ const Navbar = () => {
                     <Link
                         key={item.url}
                         href={item.url}
-                        onClick={onNavigate}
+                        onClick={(e) => handleNavClick(e, item.url, onNavigate)}
                         className={cn(
                             "text-sm font-medium transition-colors",
                             mobile
@@ -100,7 +143,6 @@ const Navbar = () => {
                     {"< "}Mehedi{" />"}
                 </div>
 
-                {/* desktop menu */}
                 <div className="hidden lg:flex items-center gap-1">
                     <NavLinks />
                 </div>
@@ -127,7 +169,6 @@ const Navbar = () => {
                         </DropdownMenuContent>
                     </DropdownMenu>
 
-                    {/* mobile drawer */}
                     <div className="lg:hidden">
                         <Drawer
                             open={open}

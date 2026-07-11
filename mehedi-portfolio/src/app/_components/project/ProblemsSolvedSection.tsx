@@ -400,6 +400,7 @@ const ProblemsSolvedSection = ({ projects }: ProblemsSolvedSectionProps) => {
                             src={project.image}
                             alt={project.title}
                             fill
+                            sizes="700"
                             className="relative object-contain"
                         />
                     </div>

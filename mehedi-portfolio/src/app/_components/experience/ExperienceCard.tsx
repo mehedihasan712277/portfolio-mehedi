@@ -37,14 +37,14 @@ interface ExperienceCardProps {
 
 // color maps — extend these if you add more variants later
 const locationColorMap: Record<string, string> = {
-    Remote: " text-emerald-400",
+    Remote: " text-emerald-700",
     "On site": " text-orange-400",
     Hybrid: " text-sky-400",
 };
 
 const jobTypeColorMap: Record<string, string> = {
     "Full-time": "text-violet-400",
-    "Part-time": "text-amber-400",
+    "Part-time": "text-amber-600",
     Contract: "text-rose-400",
 };
 

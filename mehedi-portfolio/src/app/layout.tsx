@@ -9,8 +9,31 @@ import { ThemeProvider } from "@/components/provider/theme-provider";
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-    title: "Md. Mehedi Hasan",
-    description: "Full Stack Web Developer",
+    title: "Mehedi",
+    description: "Personal portfolio of Md. Mehedi Hasan",
+
+    openGraph: {
+        title: "Mehedi | Portfolio",
+        description: "Personal portfolio of Md. Mehedi Hasan",
+        url: "https://mehedi-personal-portfolio.vercel.app", // change this to your real domain
+        siteName: "Mehedi Portfolio",
+        images: [
+            {
+                url: "https://mehedi-personal-portfolio.vercel.app/og-image.png", // IMPORTANT: must be absolute URL
+                width: 1200,
+                height: 630,
+                alt: "Mehedi Portfolio Preview",
+            },
+        ],
+        type: "website",
+    },
+
+    twitter: {
+        card: "summary_large_image",
+        title: "Mehedi | Portfolio",
+        description: "Personal portfolio of Md. Mehedi Hasan",
+        images: ["https://mehedi-personal-portfolio.vercel.app/og-image.png"],
+    },
 };
 
 export default function RootLayout({

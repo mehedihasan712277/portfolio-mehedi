@@ -20,12 +20,12 @@ import figmaIcon from "@/assets/figma.png";
 import canvaIcon from "@/assets/canva.png";
 import photoshopIcon from "@/assets/photoshop.png";
 import gitIcon from "@/assets/git.png";
-import githubIcon from "@/assets/github.png";
+// import githubIcon from "@/assets/github.png";
 import vercelIcon from "@/assets/vercel.png";
-import netlifyIcon from "@/assets/netlify.png";
+// import netlifyIcon from "@/assets/netlify.png";
 import cpanelIcon from "@/assets/cpanel.png";
 import hpanelIcon from "@/assets/hpanel.png";
-import webuzoIcon from "@/assets/webuzo.png";
+// import webuzoIcon from "@/assets/webuzo.png";
 import vpsIcon from "@/assets/vps.png";
 import linuxIcon from "@/assets/linux.png";
 import jwt from "@/assets/jwt.png";
@@ -233,11 +233,11 @@ const Skill = () => {
                             </p>
                         </div>
 
-                        <div className="flex flex-wrap gap-2.5">
+                        <div className="flex flex-wrap justify-end gap-2.5">
                             {category.skills.map((skill) => (
                                 <div
                                     key={skill.name}
-                                    className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3.5 py-2 text-sm font-medium text-foreground/90 transition-colors hover:border-accent hover:bg-accent/10"
+                                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60  px-3.5 py-2 text-sm font-medium text-foreground/90 transition-colors hover:border-accent hover:bg-accent/10"
                                 >
                                     {isImageIcon(skill.icon) ? (
                                         <Image
